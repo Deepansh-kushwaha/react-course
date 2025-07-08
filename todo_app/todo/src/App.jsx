@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Task from "./Task";
+import Axios from "axios";
+
 function App() {
   const [inputvalue, setInputvalue] = useState("");
   const [todolist, setTodolist] = useState([]);
- 
+
   const handleChange = (event) => {
     setInputvalue(event.target.value);
   };
@@ -25,14 +27,23 @@ function App() {
     setTodolist(
       todolist.map((item) => {
         if (item.id === id) {
-          return {...item , isCompleted: true};
-        }
-        else{
+          return { ...item, isCompleted: true };
+        } else {
           return item;
         }
       })
-    )
+    );
   };
+ const [excuses, setExcuses] = useState("");
+  const fetchexcuse= (excused)=>{
+    Axios.get(`https://excuser-three.vercel.app/v1/excuse/${excused}/`).then((res)=>{
+      setExcuses(res.data[0].excuse);
+    })
+  }
+
+  useEffect(()=>{
+      fetchexcuse();
+  },[])
   return (
     <>
       <div>
@@ -58,6 +69,13 @@ function App() {
             );
           })}
         </ol>
+      </div>
+      <div>
+        <h1>Random Excuses</h1>
+        <button onClick={()=>{fetchexcuse("party")}}>Get for Party</button>
+        <button onClick={()=>{fetchexcuse("office")}}>Get for Office</button>
+        <button onClick={()=>{fetchexcuse("family")}}>Get for family</button>
+        <p>{excuses}</p>
       </div>
     </>
   );
