@@ -1,10 +1,11 @@
-import React from 'react'
-
+import {React,useContext} from 'react'
+import { AppContext } from '../App'
 function Home() {
+    let {newUserName} = useContext(AppContext);
   return (
-    <div>
-      This is Home page
-    </div>
+    <h1>
+      This is Home page for {newUserName}
+    </h1>
   )
 }
 
