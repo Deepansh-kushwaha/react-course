@@ -41,9 +41,7 @@ function App() {
     })
   }
 
-  useEffect(()=>{
-      fetchexcuse();
-  },[])
+  
   return (
     <>
       <div>
