@@ -11,13 +11,17 @@ function App() {
   }
 
   const addTask = () => {
+    const task = {
+       id : todolist.length === 0 ? 1 : todolist[todolist.length -1].id + 1,
+       taskName : inputvalue,
+    }
     inputvalue.length > 0 &&
-    setTodolist([...todolist, inputvalue]);
+    setTodolist([...todolist, task]);
     setInputvalue("");
   }
 
-  const deleteTask = (item) =>{
-    setTodolist(todolist.filter((item1)=> item1 !== item))
+  const deleteTask = (id) =>{
+    setTodolist(todolist.filter((item1)=> item1.id !== id))
   }
   return (
     <><div>
@@ -26,11 +30,11 @@ function App() {
       <label htmlFor="inputfield"></label>
       <input type="text" name='inputfield' onChange={handleChange} value={inputvalue}/>
       <button onClick={addTask}>Add Task</button>
-      <ul>
+      <ol>
         {todolist.map((item, index) => {
-          return <li key={index}>{item} <button onClick={()=>{deleteTask(item)}}>X</button></li>
+          return <li key={index}>{item.taskName} <button onClick={()=>{deleteTask(item.id)}}>X</button></li>
         })}
-      </ul>
+      </ol>
     </div>
     </>
   )
