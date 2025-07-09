@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "/components/Card";
 import{ useState } from "react";
+import useCounter from "./useCounter";
 function App() {
   const planets = [
     {
@@ -29,7 +30,7 @@ function App() {
       isGasPlanet: false,
     }
   ];
- const [count,setCount] = useState(0);
+const [count , increase,decrease,reset] = useCounter();
   return (
     <>
       <div className="App">
@@ -44,9 +45,9 @@ function App() {
       <div>
         <h1>Cunter App</h1>
           <h3>{count}</h3>
-        <button onClick={()=>{setCount(count+1)}}>Increment</button>
-        <button onClick={()=>{setCount(count-1)}}>Decrement</button>
-        <button onClick={()=>{setCount(0)}}>Reset</button>
+        <button onClick={increase}>Increment</button>
+        <button onClick={decrease}>Decrement</button>
+        <button onClick={reset}>Reset</button>
       </div>
     </>
   );
