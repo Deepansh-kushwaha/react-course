@@ -1,7 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router'
-
+import {auth} from "../.config/firebase"
+import {useAuthState} from 'react-firebase-hooks/auth'
 function Navbar() {
+  const [user] = useAuthState(auth);
+  console.log(user);
   return (
     <div className="navbar bg-base-100 shadow-sm">
   <div className="flex-1">
@@ -14,7 +17,7 @@ function Navbar() {
         <div className="w-10 rounded-full">
           <img
             alt="Tailwind CSS Navbar component"
-            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+            src={user?.photoURL|| "https://placeimg.com/192/192/people"} />
         </div>
       </div>
       <ul
