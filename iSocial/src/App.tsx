@@ -1,10 +1,9 @@
-import { useState } from 'react'
 import Home from './pages/Home'
 import About from './pages/About'
 import Login from './pages/Login'
 import Forbidden from './pages/Forbidden'
 import Navbar from './components/Navbar'
-import Createpost from './pages/createpost/createpost'
+import Createpost from './pages/createpost/Createpost'
 import { Routes , Route} from 'react-router'
 
 function App() {
