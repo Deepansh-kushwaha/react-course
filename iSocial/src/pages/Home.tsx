@@ -1,9 +1,10 @@
-import React from 'react'
-
+import {auth} from "../.config/firebase"
+import {useAuthState} from 'react-firebase-hooks/auth'
 function Home() {
+  const [user] = useAuthState(auth);
   return (
     <div>
-      This is a home page
+      <h1>Welcome back {user?.displayName}</h1>
     </div>
   )
 }
