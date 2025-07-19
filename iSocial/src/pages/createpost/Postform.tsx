@@ -4,7 +4,10 @@ import * as yup from 'yup'
 import { collection, addDoc } from "firebase/firestore"
 import { db, auth } from '../../.config/firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
+import { useNavigate } from 'react-router'
+import toast from 'react-hot-toast'
 function Postform() {
+  const navigate = useNavigate();
   const [user] = useAuthState(auth);
   interface CreateFormdata { title: string, description: string };
   const shema = yup.object().shape({
@@ -20,10 +23,16 @@ function Postform() {
       username: user?.displayName,
       userId: user?.uid
     })
-    .then(() => {
-      reset();  
-    })
-    .catch((error) => console.log(error));
+      .then(() => {
+        reset();
+        navigate("/",
+          {
+            state: {
+              toastmessage: "Post created successfully",
+            }
+          })
+      })
+      .catch((error) => toast.error("Some error occured please try again later" + error.message));
 
   };
   const base = "input";

@@ -5,11 +5,13 @@ import Forbidden from './pages/Forbidden'
 import Navbar from './components/Navbar'
 import Createpost from './pages/createpost/Createpost'
 import { Routes , Route} from 'react-router'
-
+import {Toaster} from 'react-hot-toast'
 function App() {
   return (
+     
  <>
    <Navbar/>
+   <Toaster position='top-center' />
   <Routes>
     <Route path="/" element={<Home />} />
     <Route path="/about" element={<About />} />
