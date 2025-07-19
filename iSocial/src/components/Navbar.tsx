@@ -5,13 +5,13 @@ import { signOut } from "firebase/auth";
 
 function Navbar() {
 const navigate = useNavigate();
-const logout = async () => {
-  await signOut(auth).then(() => navigate("/")).catch((error) => console.log(error));
-};
 const [user] = useAuthState(auth);
 const base = "btn rounded-full";
 const active = "btn-active ";
 const inactive = "btn-ghost hover:border-b-amber-50 ";
+const logout = async () => {
+  await signOut(auth).then(() => navigate("/")).catch((error) => console.log(error));
+};
   return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="flex-1">
@@ -38,6 +38,7 @@ const inactive = "btn-ghost hover:border-b-amber-50 ";
         <div className="flex items-center">
           <div
             className="btn btn-ghost btn-circle avatar"
+           
           >
             <div className="w-10 rounded-full">
               {user &&
